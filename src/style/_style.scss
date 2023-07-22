@@ -1,0 +1,77 @@
+.body {
+  display: flex;
+}
+/* HEADER */
+
+.header {
+  padding-top: 45px;
+  display: flex;
+  justify-content: center;
+
+  &-title {
+    font-size: 4.5rem;
+    color: $steel;
+    user-select: none;
+  }
+}
+/* MAIN */
+
+/* FOOTER */
+
+.footer {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  display: flex;
+  width: 100%;
+  padding: 10px;
+  justify-content: center;
+  align-items: center;
+  font-size: 24px;
+  font-weight: 700;
+  gap: 10px;
+  color: $white;
+}
+
+.nickname {
+  font-size: 22px;
+  color: $white;
+  margin: 0px 5px;
+
+  &:hover {
+    color: $white;
+  }
+}
+
+.github-icon {
+  animation: blinking 5s infinite alternate;
+  border-radius: 50%;
+  cursor: pointer;
+
+  &:hover {
+    box-shadow: 0 0 15px 2px $white;
+  }
+}
+
+/* MEDIA QUERIES */
+
+/* ANIMATIONS */
+
+@keyframes blinking {
+  from {
+    fill: $black;
+  }
+  to {
+    fill: $white;
+    box-shadow: 0 0 15px 5px $white;
+  }
+}
+
+@keyframes rotate {
+  from {
+    transform: rotate(0);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}

@@ -1,5 +1,5 @@
-import Gameboard from './gameboardFactory';
-import shipTypes from './game-helpers/shipTypes';
+import Gameboard from '../factories/gameboardFactory';
+import shipTypes from '../game-helpers/shipTypes';
 
 describe('Gameboard methods', () => {
   let testBoard;

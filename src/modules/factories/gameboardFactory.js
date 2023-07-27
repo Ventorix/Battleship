@@ -77,4 +77,10 @@ export default class Gameboard {
     };
     return findSuitableLocation(randomAxis());
   }
+
+  opponentBoard() {
+    return this.board.map((cell) => {
+      return cell.isShot && cell.hasShip ? 'hit' : cell.isShot ? 'miss' : 'empty';
+    });
+  }
 }

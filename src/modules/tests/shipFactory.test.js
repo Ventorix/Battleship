@@ -1,4 +1,4 @@
-import Ship from './shipFactory';
+import Ship from '../factories/shipFactory';
 
 describe('Ship methods', () => {
   let testCarrier;

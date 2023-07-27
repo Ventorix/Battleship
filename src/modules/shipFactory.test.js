@@ -1,23 +1,32 @@
 import Ship from './shipFactory';
 
-describe('Ship methods test', () => {
-  test('Hit ship reaction', () => {
-    let ship = new Ship('craiser', 5, 2);
-    expect(ship.hit()).toEqual(3); // Increase hit counter by 1
+describe('Ship methods', () => {
+  let testCarrier;
+  let testSubmarine;
+
+  beforeEach(() => {
+    testCarrier = new Ship('carrier', [5, 6, 7, 8, 9]);
+    testSubmarine = new Ship('submarine', [22, 23, 24]);
   });
 
-  test('Sunk ship if hits >= ship length', () => {
-    let ship = new Ship('craiser', 2, 5);
-    expect(ship.isSunk()).toBeTruthy(); // Ship sunk
+  it('accepts a hit', () => {
+    testCarrier.hit(0);
+    expect(testCarrier.hits).toEqual([0]);
   });
-
-  test('The maximum size of the ship should not exceed the limit', () => {
-    let ship = new Ship('craiser', 22);
-    expect(ship.size).toEqual(5); // 22 becomes 5 (max ship length limit)
+  it('accepts multiple hits', () => {
+    testSubmarine.hit(22);
+    testSubmarine.hit(23);
+    expect(testSubmarine.hits).toEqual([22, 23]);
   });
-
-  test('The minimum size of the ship should not be under the limit', () => {
-    let ship = new Ship('craiser', -22);
-    expect(ship.size).toEqual(2); // -22 becomes 2 (min ship length limit)
+  it('shows that the boat is not sunk', () => {
+    testCarrier.hit(5);
+    testCarrier.hit(9);
+    expect(testCarrier.isSunk()).toBe(false);
+  });
+  it('shows that a boat is sunk', () => {
+    testSubmarine.hit(22);
+    testSubmarine.hit(23);
+    testSubmarine.hit(24);
+    expect(testSubmarine.isSunk()).toBe(true);
   });
 });

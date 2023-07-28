@@ -6,6 +6,7 @@ class Player {
     this.ships = [];
     this.gameBoard = new Gameboard();
   }
+
   fireShot(location, gameboard) {
     if (gameboard.opponentBoard()[location] === 'empty') {
       gameboard.receiveShot(location);

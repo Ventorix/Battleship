@@ -1,5 +1,5 @@
-import Ship from '../shipFactory';
-import Gameboard from '../gameboardFactory';
+import Ship from '../factories/shipFactory';
+import Gameboard from '../factories/gameboardFactory';
 import shipTypes from './shipTypes';
 
 function placeComputerShips(gameBoard) {

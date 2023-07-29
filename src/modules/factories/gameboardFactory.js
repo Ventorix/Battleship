@@ -11,6 +11,21 @@ export default class Gameboard {
     }
   };
 
+  resetGameboard() {
+    this.board = [];
+    this.init();
+  }
+
+  getShipsLocation() {
+    let arr = [];
+    this.board.forEach((elem) => {
+      if (elem.hasShip != false) {
+        arr.push(this.board.indexOf(elem));
+      }
+    });
+    return arr;
+  }
+
   receiveShot(location) {
     this.board[location].isShot = true;
   }

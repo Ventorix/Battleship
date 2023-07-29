@@ -16,7 +16,7 @@ const shipTypes = [
     length: 3,
   },
   {
-    name: 'patrol boat',
+    name: 'boat',
     length: 2,
   },
 ];

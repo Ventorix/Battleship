@@ -1,6 +1,4 @@
-import shotMarker from '../img/shot-marker.svg';
-
-const gridContainer = document.querySelector('.grid');
+import shotMarker from '../../img/shot-marker.svg';
 
 function createShotImg(imgPath) {
   const point = document.createElement('img');
@@ -10,15 +8,16 @@ function createShotImg(imgPath) {
 }
 
 function getTargetCellElement(y, x) {
-  return document.querySelector(`[data-y='${y}'][data-x='${x}']`);
+  return document.querySelector(`div.rival-grid [data-y='${y}'][data-x='${x}']`);
 }
 
 function checkPosition(gameboard, position) {
   return gameboard.board[position].isShot ? false : true;
 }
 
-function renderGrid(player, bot) {
-  for (let i = 0; i < player.gameBoard.board.length; i++) {
+function rivalWaterGrid(bot) {
+  const gridContainer = document.querySelector('.rival-grid');
+  for (let i = 0; i < bot.gameBoard.board.length; i++) {
     const gridElement = document.createElement('div');
     gridElement.dataset.y = Math.floor(i / 10);
     gridElement.dataset.x = (i / 10).toString().split('.')[1] || 0;
@@ -36,11 +35,11 @@ function renderGrid(player, bot) {
         targetPosition = y + x;
       }
 
-      if (checkPosition(player.gameBoard, targetPosition)) {
+      if (checkPosition(bot.gameBoard, targetPosition)) {
         setTimeout(() => {
           let cellCoordinats = getTargetCellElement(e.target.dataset.y, e.target.dataset.x);
           cellCoordinats.appendChild(createShotImg(shotMarker));
-          player.fireShot(targetPosition, player.gameBoard);
+          bot.fireShot(targetPosition, bot.gameBoard);
         }, 300);
       } else return;
     });
@@ -49,4 +48,4 @@ function renderGrid(player, bot) {
   }
 }
 
-export default renderGrid;
+export default rivalWaterGrid;

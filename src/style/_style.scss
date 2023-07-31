@@ -73,9 +73,15 @@
 .shot-img {
   height: 30%;
   width: 30%;
-  fill: $steel;
   user-select: none;
   pointer-events: none;
+}
+
+.miss {
+}
+
+.hit {
+  filter: invert(31%) sepia(100%) saturate(3971%) hue-rotate(345deg) brightness(100%) contrast(96%);
 }
 
 .ship-tile {

@@ -1,10 +1,37 @@
 import shotMarker from '../../img/shot-marker.svg';
 
-function createShotImg(imgPath) {
+function createShotImg(imgPath, state) {
   const point = document.createElement('img');
   point.classList.add('shot-img');
+  point.classList.add(`${state}`);
   point.src = imgPath;
   return point;
+}
+
+function checkWin(player) {
+  if (player.ships.length > 0) {
+    return;
+  } else typeMessage(`${player.name} win`);
+}
+
+function setShipHit(bot, targetPosition) {
+  targetPosition = Number(targetPosition);
+
+  bot.ships.forEach((ship) => {
+    if (ship.position.includes(targetPosition)) {
+      ship.hit(targetPosition);
+      if (ship.isSunk()) {
+        typeMessage(`${ship.name} is sunk`);
+        bot.removeShip(ship.name);
+        console.log(bot.ships);
+      } else typeMessage('hit');
+    }
+  });
+}
+
+function typeMessage(message) {
+  let text = document.querySelector('.game-text');
+  text.textContent = message;
 }
 
 function getTargetCellElement(y, x) {
@@ -38,8 +65,19 @@ function rivalWaterGrid(bot) {
       if (checkPosition(bot.gameBoard, targetPosition)) {
         setTimeout(() => {
           let cellCoordinats = getTargetCellElement(e.target.dataset.y, e.target.dataset.x);
-          cellCoordinats.appendChild(createShotImg(shotMarker));
-          bot.fireShot(targetPosition, bot.gameBoard);
+
+          if (bot.gameBoard.board[targetPosition].hasShip !== false) {
+            bot.fireShot(targetPosition, bot.gameBoard);
+            bot.gameBoard.board[targetPosition].isShot = true;
+            cellCoordinats.appendChild(createShotImg(shotMarker, 'hit'));
+            setShipHit(bot, targetPosition);
+            checkWin(bot);
+          } else if (bot.gameBoard.board[targetPosition].hasShip === false) {
+            bot.fireShot(targetPosition, bot.gameBoard);
+            bot.gameBoard.board[targetPosition].isShot = true;
+            cellCoordinats.appendChild(createShotImg(shotMarker, 'miss'));
+            typeMessage('miss');
+          }
         }, 300);
       } else return;
     });

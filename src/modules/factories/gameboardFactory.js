@@ -82,14 +82,26 @@ export default class Gameboard {
             locationArray.push(i + count * 10);
           }
         }
-        // test if this location will work, if so, push to the collection of possibilities
+
         if (this.checkCollisions(locationArray)) {
-          possibleLocationArrays.push(locationArray);
+          // проверка наличия соседних клеток с кораблями
+          const hasNeighborShip = locationArray.some((loc) => {
+            const neighbors = [-1, 1, -10, 10, -9, 9, -11, 11]; // соседние клетки
+            return neighbors.some((neighbor) => this.board[loc + neighbor]?.hasShip);
+          });
+
+          if (!hasNeighborShip) {
+            possibleLocationArrays.push(locationArray);
+          }
         }
+      }
+      if (possibleLocationArrays.length === 0) {
+        return findRandomShipLocation(randomAxis());
       }
       // return a random choice
       return possibleLocationArrays[Math.floor(Math.random() * possibleLocationArrays.length)];
     };
+
     return findSuitableLocation(randomAxis());
   }
 

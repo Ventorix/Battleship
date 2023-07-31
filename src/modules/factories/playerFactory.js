@@ -12,6 +12,10 @@ class Player {
       gameboard.receiveShot(location);
     }
   }
+
+  removeShip(name) {
+    this.ships = this.ships.filter((ship) => ship.name !== name);
+  }
 }
 
 export default Player;

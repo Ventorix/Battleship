@@ -19,16 +19,17 @@ function randomPlaceShips(player) {
   clearCells(playerGrid);
   player.gameBoard.resetGameboard();
   friendlyWatersGrid(player);
-  placeComputerShips(player.gameBoard);
+  placeComputerShips(player.gameBoard, player);
   renderShips(player.gameBoard);
 }
 
 function renderBattleground(player, bot) {
   randomButton.addEventListener('click', () => randomPlaceShips(player));
 
-  placeComputerShips(bot.gameBoard);
+  placeComputerShips(bot.gameBoard, bot);
   friendlyWatersGrid(player);
   rivalWaterGrid(bot);
+  console.log(bot);
 }
 
 function renderShips(gameboard) {

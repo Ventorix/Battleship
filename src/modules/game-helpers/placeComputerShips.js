@@ -2,7 +2,7 @@ import Ship from '../factories/shipFactory';
 import Gameboard from '../factories/gameboardFactory';
 import shipTypes from './shipTypes';
 
-function placeComputerShips(gameBoard) {
+function placeComputerShips(gameBoard, player) {
   const tempBoard = new Gameboard(gameBoard.board);
   const ships = [];
 
@@ -11,6 +11,8 @@ function placeComputerShips(gameBoard) {
     ship.position.forEach((pos) => (tempBoard.board[pos].hasShip = ship.name));
     ships.push(ship);
   });
+
+  player.ships = ships;
 }
 
 export default placeComputerShips;

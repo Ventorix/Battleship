@@ -22,11 +22,15 @@ function computerTurn(player, bot) {
           if (hitShip.isSunk()) {
             typeMessage(`${hitShip.name} is sunk`);
           } else typeMessage('hit');
-        } else typeMessage('miss');
-
-        bot.fireShot(shotLocation, playerGameboard);
-        drawMarkers(playerGameboard, side);
-        nextTurn();
+          bot.fireShot(shotLocation, playerGameboard);
+          drawMarkers(playerGameboard, side);
+          computerTurn(player, bot);
+        } else {
+          typeMessage('miss');
+          bot.fireShot(shotLocation, playerGameboard);
+          drawMarkers(playerGameboard, side);
+          nextTurn();
+        }
       }, 1000);
     }
   } else typeMessage(`${player.name} win!`);

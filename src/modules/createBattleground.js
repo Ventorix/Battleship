@@ -25,6 +25,7 @@ function renderBattleground(player, bot) {
   placeComputerShips(bot.gameBoard, bot);
   friendlyWatersGrid(player);
   rivalWaterGrid(player, bot);
+  randomPlaceShips(player);
 }
 
 export default renderBattleground;

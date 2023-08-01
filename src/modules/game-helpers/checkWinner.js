@@ -1,4 +1,4 @@
-function checkWinner({ human, computer }) {
+function checkWinner([human, computer]) {
   const stillPlaying = [human, computer].filter(
     (player) => !player.ships.every((ship) => ship.isSunk()),
   );

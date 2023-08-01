@@ -58,10 +58,7 @@
   }
 }
 
-.player-grid {
-}
-
-.grid-cell:has(.shot-img) {
+.rival-grid > .grid-cell:has(.shot-img) {
   cursor: not-allowed;
 
   &:hover {
@@ -77,14 +74,8 @@
   pointer-events: none;
 }
 
-.miss {
-}
-
 .hit {
   filter: invert(31%) sepia(100%) saturate(3971%) hue-rotate(345deg) brightness(100%) contrast(96%);
-}
-
-.ship-tile {
 }
 
 .battleship {

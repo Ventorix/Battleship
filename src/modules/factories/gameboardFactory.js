@@ -84,9 +84,9 @@ export default class Gameboard {
         }
 
         if (this.checkCollisions(locationArray)) {
-          // проверка наличия соседних клеток с кораблями
+          // checking for adjacent cells with ships
           const hasNeighborShip = locationArray.some((loc) => {
-            const neighbors = [-1, 1, -10, 10, -9, 9, -11, 11]; // соседние клетки
+            const neighbors = [-1, 1, -10, 10, -9, 9, -11, 11]; // adjacent cells
             return neighbors.some((neighbor) => this.board[loc + neighbor]?.hasShip);
           });
 

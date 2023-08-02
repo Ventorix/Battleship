@@ -1,9 +1,6 @@
 import './index.html';
 import './index.scss';
-import renderBattleground from './modules/createBattleground';
-import Player from './modules/factories/playerFactory';
+import { renderBattleground } from './modules/createBattleground';
+import initPlayers from './modules/game-helpers/initPlayers';
 
-let player = new Player('Jojo');
-let bot = new Player('Robot');
-
-renderBattleground(player, bot);
+renderBattleground(initPlayers());

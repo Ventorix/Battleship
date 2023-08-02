@@ -14,4 +14,8 @@ function getTurn() {
   return turn;
 }
 
-export { nextTurn, getTurn };
+function resetTurns() {
+  turn = true;
+}
+
+export { nextTurn, getTurn, resetTurns };

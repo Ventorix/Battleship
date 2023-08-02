@@ -2,6 +2,7 @@ import computerAI from './computerAI';
 import drawMarkers from '../game-window/drawMarkers';
 import typeMessage from '../game-window/gameMessage';
 import checkWinner from './checkWinner';
+import { showWinnerScreen } from '../game-window/winnerScreen';
 import { nextTurn, getTurn } from './turnToggler';
 
 function computerTurn(player, bot) {
@@ -21,6 +22,9 @@ function computerTurn(player, bot) {
 
           if (hitShip.isSunk()) {
             typeMessage(`${hitShip.name} is sunk`);
+            if (checkWinner([player, bot])) {
+              showWinnerScreen(`${bot.name} win!`);
+            }
           } else typeMessage('hit');
           bot.fireShot(shotLocation, playerGameboard);
           drawMarkers(playerGameboard, side);
@@ -33,7 +37,7 @@ function computerTurn(player, bot) {
         }
       }, 1000);
     }
-  } else typeMessage(`${player.name} win!`);
+  }
 }
 
 export default computerTurn;

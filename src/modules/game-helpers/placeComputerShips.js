@@ -2,8 +2,8 @@ import Ship from '../factories/shipFactory';
 import Gameboard from '../factories/gameboardFactory';
 import shipTypes from './shipTypes';
 
-function placeComputerShips(gameBoard, player) {
-  const tempBoard = new Gameboard(gameBoard.board);
+function placeComputerShips(player) {
+  const tempBoard = new Gameboard(player.gameBoard.board);
   const ships = [];
 
   shipTypes.forEach((shipType) => {

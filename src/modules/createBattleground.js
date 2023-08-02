@@ -3,6 +3,7 @@ import friendlyWatersGrid from './game-window/playerWaterGrid';
 import rivalWaterGrid from './game-window/rivalWaterGrid';
 import renderShips from './game-window/renderShips';
 import restartGame from './game-helpers/resetGame';
+import setBoardNotation from './game-window/boardNotation';
 
 const playerGrid = document.querySelector('.player-grid');
 const computerGrid = document.querySelector('.rival-grid');
@@ -16,7 +17,7 @@ function clearCells(grid) {
 function setButtonListeners([player, bot]) {
   const restartButton = document.querySelector('.restart-btn');
   const randomButton = document.querySelector('.random-button');
-  randomButton.addEventListener('click', () => randomPlaceShips(player));
+  // randomButton.addEventListener('click', () => randomPlaceShips(player));
   restartButton.addEventListener('click', () => restartGame([player, bot]));
 }
 
@@ -45,6 +46,7 @@ function renderBattleground([player, bot]) {
   rivalWaterGrid(player, bot);
   randomPlaceShips(player);
   setButtonListeners([player, bot]);
+  setBoardNotation();
 }
 
 export { renderBattleground, resetBattlegrounds };

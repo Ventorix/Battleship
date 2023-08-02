@@ -9,6 +9,7 @@
     font-size: 4.5rem;
     color: $steel;
     user-select: none;
+    letter-spacing: 5px;
   }
 }
 
@@ -34,15 +35,20 @@
   background: linear-gradient(
     90deg,
     rgb(55, 55, 55) 0%,
-    rgb(41, 41, 41) 29%,
-    rgb(41, 41, 41) 76%,
+    rgb(41, 41, 41) 30%,
+    rgb(41, 41, 41) 50%,
     rgb(56, 56, 56) 100%
   );
 }
 
 .game-text {
-  margin: auto;
   font-size: 2.2rem;
+  overflow: hidden;
+  border-right: 0.1em solid white;
+  white-space: nowrap;
+  margin: 0 auto;
+  letter-spacing: 0.15em;
+  animation: blink-caret 0.7s step-end infinite;
 }
 
 .tip-wrapper {
@@ -286,6 +292,14 @@
   }
 }
 
+.winner-text.rival-text {
+  color: $orange;
+}
+
+.winner-text.player-text {
+  color: skyblue;
+}
+
 .overlay {
   position: fixed;
   background: rgba(0, 0, 0, 0.3);
@@ -368,5 +382,15 @@
 @keyframes sweep {
   to {
     transform: rotate(360deg) translate3d(0, 0, 0);
+  }
+}
+
+@keyframes blink-caret {
+  from,
+  to {
+    border-color: transparent;
+  }
+  50% {
+    border-color: $green;
   }
 }

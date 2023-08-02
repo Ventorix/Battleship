@@ -23,7 +23,7 @@ function computerTurn(player, bot) {
           if (hitShip.isSunk()) {
             typeMessage(`${hitShip.name} is sunk`);
             if (checkWinner([player, bot])) {
-              showWinnerScreen(`${bot.name} win!`);
+              showWinnerScreen(`${bot.name} win!`, 'rival');
             }
           } else typeMessage('hit');
           bot.fireShot(shotLocation, playerGameboard);
@@ -33,7 +33,9 @@ function computerTurn(player, bot) {
           typeMessage('miss');
           bot.fireShot(shotLocation, playerGameboard);
           drawMarkers(playerGameboard, side);
-          nextTurn();
+          setTimeout(() => {
+            nextTurn();
+          }, 300);
         }
       }, 1000);
     }

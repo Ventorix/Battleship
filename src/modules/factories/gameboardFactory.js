@@ -16,6 +16,16 @@ export default class Gameboard {
     this.init();
   }
 
+  getShip(shipName) {
+    let arr = [];
+    this.board.forEach((elem) => {
+      if (elem.hasShip != shipName) {
+        arr.push(this.board.indexOf(elem));
+      }
+    });
+    return arr;
+  }
+
   getShipsLocation() {
     let arr = [];
     this.board.forEach((elem) => {

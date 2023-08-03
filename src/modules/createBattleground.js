@@ -7,6 +7,7 @@ import setBoardNotation from './game-window/boardNotation';
 
 const playerGrid = document.querySelector('.player-grid');
 const computerGrid = document.querySelector('.rival-grid');
+const gameText = document.querySelector('.game-text');
 
 function clearCells(grid) {
   while (grid.firstChild) {
@@ -30,6 +31,7 @@ function resetBattlegrounds([player, bot]) {
   rivalWaterGrid(player, bot);
   placeComputerShips(bot);
   randomPlaceShips(player);
+  gameText.textContent = '...';
 }
 
 function randomPlaceShips(player) {

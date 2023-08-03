@@ -1,9 +1,10 @@
-import drawMarkers from '../game-window/drawMarkers';
 import computerTurn from './computerTurn';
 import typeMessage from '../game-window/gameMessage';
 import checkWinner from './checkWinner';
 import { showWinnerScreen } from '../game-window/winnerScreen';
 import { nextTurn, getTurn } from './turnToggler';
+import convertCoordinates from './coordinateConvertor';
+import { drawMarkers, getTargetCellElement } from '../game-window/drawMarkers';
 
 function checkPosition(gameboard, position) {
   return gameboard.board[position].isShot ? false : true;
@@ -29,6 +30,7 @@ function playerTurn(e, player, bot) {
 
       if (checkPosition(computerGameboard, targetPosition)) {
         const shotLocation = +targetPosition;
+
         if (computerGameboard.checkIfShotHit(shotLocation)) {
           const newShips = { ...bot }.ships;
           const hitShip = newShips.find(
@@ -38,6 +40,12 @@ function playerTurn(e, player, bot) {
 
           if (hitShip.isSunk()) {
             typeMessage(`${hitShip.name} is sunk`);
+
+            for (let i = 0; i < hitShip.position.length; i++) {
+              let node = getTargetCellElement(convertCoordinates(hitShip.position[i]), 'rival');
+              node.classList.add('ship-tile');
+              node.classList.add(`${hitShip.name}`);
+            }
 
             if (checkWinner([player, bot])) {
               showWinnerScreen(`${player.name} win!`, 'player');

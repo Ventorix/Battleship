@@ -1,5 +1,5 @@
 import computerAI from './computerAI';
-import drawMarkers from '../game-window/drawMarkers';
+import { drawMarkers } from '../game-window/drawMarkers';
 import typeMessage from '../game-window/gameMessage';
 import checkWinner from './checkWinner';
 import { showWinnerScreen } from '../game-window/winnerScreen';
@@ -13,6 +13,7 @@ function computerTurn(player, bot) {
     if (!turn) {
       setTimeout(() => {
         const shotLocation = computerAI(player);
+
         if (playerGameboard.checkIfShotHit(shotLocation)) {
           const newShips = { ...player }.ships;
           const hitShip = newShips.find(
@@ -22,13 +23,6 @@ function computerTurn(player, bot) {
 
           if (hitShip.isSunk()) {
             typeMessage(`${hitShip.name} is sunk`);
-            const neighbors = [-1, 1, -10, 10, -9, 9, -11, 11];
-            console.log(hitShip);
-            for (let i = 0; i < neighbors.length; i++) {
-              let hit = hitShip.position[i] + neighbors[i];
-              console.log(hit);
-              bot.fireShot(hit, playerGameboard);
-            }
             drawMarkers(playerGameboard, side);
 
             if (checkWinner([player, bot])) {

@@ -2,7 +2,7 @@ const numContainers = document.querySelectorAll('.number-container');
 const letterContainers = document.querySelectorAll('.letter-container');
 
 function createNumbers(container) {
-  for (let i = 0; i <= 9; i++) {
+  for (let i = 1; i <= 10; i++) {
     const number = document.createElement('div');
     number.textContent = i;
     number.classList.add('number');

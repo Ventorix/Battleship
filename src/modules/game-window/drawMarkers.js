@@ -5,6 +5,7 @@ function createShotImg(imgPath, state) {
   const point = document.createElement('img');
   point.classList.add('shot-img');
   point.classList.add(`${state}`);
+  point.classList.add('pulse');
   point.src = imgPath;
   return point;
 }
@@ -54,4 +55,4 @@ function drawMarkers(gameboard, side) {
   });
 }
 
-export default drawMarkers;
+export { drawMarkers, getTargetCellElement };

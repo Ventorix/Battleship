@@ -13,17 +13,14 @@
   </head>
 
   <body>
-    <header class="header">
+    <header class="header hide">
       <h1 class="header-title"">BATTLESHIP</h1>
     </header>
 
     <main class=" main">
         <div class="game-container">
-          <div class="text-container">
-            <h2 class="game-text">...</h2>
-          </div>
           <div class="gameboards-container">
-            <div class="gameboard-container">
+            <div class="gameboard-container friendly">
               <div class="tip-wrapper">
                 <p class="tip-text">Friendly waters</p>
               </div>
@@ -36,7 +33,7 @@
               </div>
             </div>
 
-            <div class="gameboard-container">
+            <div class="gameboard-container enemy">
               <div class="tip-wrapper">
                 <p class="tip-text rival">Enemy waters</p>
               </div>
@@ -50,6 +47,9 @@
             </div>
           </div>
         </div>
+        <div class="text-container">
+          <h2 class="game-text">...</h2>
+        </div>
         <div class="winner-screen hide">
           <p class="winner-text">is win</p>
           <button type="button" class="restart-btn">Play Again</button>
@@ -57,7 +57,7 @@
         <div class="overlay hide"></div>
         </main>
 
-        <footer class=" footer">
+        <footer class="footer hide">
           <p>Developed by <a href="https://github.com/Ventorix" target="_blank">
               <span class="nickname">Ventorix</span></a>
           </p>

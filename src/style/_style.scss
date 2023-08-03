@@ -14,11 +14,21 @@
 }
 
 /* MAIN */
-
+.main {
+  position: relative;
+  max-width: 1200px;
+  width: 100%;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-height: 90vh;
+  max-height: 100%;
+}
 .game-container {
-  margin-top: 80px;
+  margin-top: 30px;
   width: 100vw;
-  height: 60vh;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -28,23 +38,29 @@
 
 .text-container {
   display: flex;
-  width: 50%;
-  padding: 5px;
-  border: 2px solid $steel;
-  border-radius: 12px;
+  justify-content: flex-start;
+  align-items: center;
+  background-color: rgba(0, 0, 0, 0.75);
+  width: 100%;
+  grid-column: 1/3;
+  margin-top: 1rem;
+  padding: 1rem;
+  border-radius: 0.5rem;
+  transition: all 0.6s;
   background: linear-gradient(
     90deg,
-    rgb(55, 55, 55) 0%,
-    rgb(41, 41, 41) 30%,
-    rgb(41, 41, 41) 50%,
-    rgb(56, 56, 56) 100%
+    rgb(135, 206, 235) 0%,
+    rgba(135, 206, 235, 0.8029586835) 20%,
+    rgba(135, 206, 235, 0.6040791317) 40%,
+    rgba(135, 206, 235, 0.4023984594) 60%,
+    rgba(135, 206, 235, 0.1951155462) 100%
   );
 }
 
 .game-text {
-  font-size: 2.2rem;
+  font-size: min(0.5rem + 1vw, 1.25rem);
   overflow: hidden;
-  border-right: 0.1em solid white;
+  border-right: 0.4em solid white;
   white-space: nowrap;
   margin: 0 auto;
   letter-spacing: 0.15em;
@@ -55,11 +71,12 @@
   display: flex;
   justify-content: right;
   padding-bottom: 5px;
+  grid-column: 2/3;
 }
 
 .tip-text {
   color: skyblue;
-  font-size: 2rem;
+  font-size: min(0.5rem + 1vw, 1.7rem);
   font-weight: 500;
   margin-bottom: 0.5rem;
   padding-right: 0.5rem;
@@ -70,18 +87,34 @@
 }
 
 .gameboards-container {
-  display: flex;
-  gap: 150px;
+  width: 100%;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+  margin: 0 auto;
+  max-width: 75rem;
 }
 
 .gameboard-container {
   background-color: rgba(0, 0, 0, 0.6);
+  display: grid;
   padding: 1rem;
   border-radius: 12px;
+  width: 100%;
+  grid-template-columns: auto 1fr;
+  grid-template-rows: auto auto;
+  max-width: 600px;
+  border-radius: 0.5rem;
 }
 
 .gameboard {
-  display: flex;
+  width: 100%;
+  display: grid;
+  grid-template-columns: auto 1fr;
+  grid-template-rows: auto auto;
+  max-width: 600px;
+  border-radius: 0.5rem;
+  grid-column: 2/3;
 }
 
 .rival-grid {
@@ -113,9 +146,10 @@
   overflow: hidden;
   display: grid;
   grid-gap: 0;
-  grid-template-columns: repeat(auto-fit, minmax(3rem, 1fr));
-  width: 30rem;
-  height: 30rem;
+  grid-column: 2/3;
+  aspect-ratio: 1/1;
+  grid-template-columns: repeat(10, 1fr);
+  grid-template-rows: repeat(10, 1fr);
 
   &::before {
     content: "";
@@ -154,8 +188,7 @@
   &-cell {
     display: flex;
     border: 1px solid $transparent-white;
-    width: 3rem;
-    height: 3rem;
+    aspect-ratio: 1/1;
     justify-content: center;
     align-items: center;
     user-select: none;
@@ -186,14 +219,17 @@
   justify-content: space-around;
   margin-right: 0.5rem;
   font-weight: 500;
+  grid-column: 1/2;
 }
 
 .number {
-  font-size: 1rem;
+  font-size: min(0.2rem + 1.25vw, 0.85rem);
+  user-select: none;
 }
 
 .letter-container {
   display: flex;
+  grid-column: 2/3;
   justify-content: space-around;
   margin-bottom: 0.5rem;
   margin-left: 0.55rem;
@@ -201,7 +237,8 @@
 }
 
 .letter {
-  font-size: 1rem;
+  font-size: min(0.2rem + 1.25vw, 0.85rem);
+  user-select: none;
 }
 
 .shot-img {
@@ -319,6 +356,9 @@
   }
 }
 
+.hide {
+  display: none !important;
+}
 /* FOOTER */
 
 .footer {
@@ -358,6 +398,56 @@
 
 /* MEDIA QUERIES */
 
+@media screen and (max-width: 30rem) {
+  .gameboards-container {
+    gap: 0.5rem;
+    grid-template-columns: 1fr;
+  }
+
+  .gameboard-container.friendly {
+    width: 12.5rem;
+    margin-right: auto;
+  }
+}
+
+@media screen and (max-width: 48rem) {
+  .gameboards-container {
+    display: grid;
+    grid-template-rows: auto;
+    align-items: center;
+  }
+
+  .gameboard-container {
+    max-width: 25rem;
+    grid-column: 1/3;
+  }
+
+  .gameboard-container.enemy {
+    margin-left: auto;
+  }
+
+  .header-title {
+    font-size: 2.5em;
+  }
+
+  .main {
+    margin-bottom: 80px;
+  }
+
+  .game-container {
+    margin-top: 20px;
+  }
+
+  .tip-text {
+    font-size: 1rem;
+  }
+
+  .text-container {
+    padding: 0px;
+    width: 90%;
+  }
+}
+
 /* ANIMATIONS */
 
 @keyframes blinking {
@@ -367,15 +457,6 @@
   to {
     fill: $white;
     box-shadow: 0 0 15px 5px $white;
-  }
-}
-
-@keyframes rotate {
-  from {
-    transform: rotate(0);
-  }
-  to {
-    transform: rotate(360deg);
   }
 }
 
@@ -391,6 +472,6 @@
     border-color: transparent;
   }
   50% {
-    border-color: $green;
+    border-color: $secondary;
   }
 }

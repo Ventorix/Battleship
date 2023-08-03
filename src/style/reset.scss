@@ -4,7 +4,7 @@ html {
 }
 
 body {
-  background: linear-gradient(90deg, rgb(0, 21, 36) 0%, rgb(0, 41, 83) 25%, rgb(0, 54, 83) 75%, rgb(0, 22, 38)) 100%;
+  background: url("../img/background.jpg") center/cover no-repeat;
   min-height: 100vh;
   color: $white;
   place-items: center;

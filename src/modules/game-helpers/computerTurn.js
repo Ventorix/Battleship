@@ -22,6 +22,15 @@ function computerTurn(player, bot) {
 
           if (hitShip.isSunk()) {
             typeMessage(`${hitShip.name} is sunk`);
+            const neighbors = [-1, 1, -10, 10, -9, 9, -11, 11];
+            console.log(hitShip);
+            for (let i = 0; i < neighbors.length; i++) {
+              let hit = hitShip.position[i] + neighbors[i];
+              console.log(hit);
+              bot.fireShot(hit, playerGameboard);
+            }
+            drawMarkers(playerGameboard, side);
+
             if (checkWinner([player, bot])) {
               showWinnerScreen(`${bot.name} win!`, 'rival');
             }
